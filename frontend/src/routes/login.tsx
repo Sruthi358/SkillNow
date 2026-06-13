@@ -14,6 +14,10 @@ import {
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import {
+  findUserByEmail,
+  findExpertByEmail
+} from "@/lib/firestore";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -34,7 +38,8 @@ function LoginPage() {
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   const canSubmit = role !== "" && emailValid;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: { role?: string; email?: string } = {};
     if (!role) newErrors.role = "Select a role";
@@ -43,8 +48,90 @@ function LoginPage() {
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
 
-    toast.success("Welcome Back");
-    setTimeout(() => navigate({ to: role === "user" ? "/user" : "/expert" }), 600);
+    // toast.success("Welcome Back");
+    // setTimeout(() => navigate({ to: role === "user" ? "/user" : "/expert" }), 600);
+    try {
+      if (role === "user") {
+    
+        // const user = await findUserByEmail(email.trim());
+    
+        // if (user.length > 0) {
+    
+        //   localStorage.setItem(
+        //     "skillnowUser",
+        //     JSON.stringify(user[0])
+        //   );
+    
+        //   toast.success("Welcome Back");
+    
+        //   setTimeout(() => {
+        //     navigate({ to: "/user" });
+        //   }, 800);
+    
+        // } else {
+    
+        //   toast.error("User not found");
+    
+        // }
+
+        const user = await findUserByEmail(email.trim());
+
+console.log("USER:", user);
+
+if (user) {
+
+  localStorage.setItem(
+    "skillnowUser",
+    JSON.stringify(user)
+  );
+
+  toast.success("Welcome Back");
+
+  setTimeout(() => {
+    navigate({ to: "/user" });
+  }, 800);
+
+} else {
+
+  toast.error("User not found");
+
+}
+    
+      } else {
+    
+        const expert = await findExpertByEmail(
+          email.trim()
+        );
+    
+        if (expert) {
+    
+          localStorage.setItem(
+            "skillnowExpert",
+            JSON.stringify(expert)
+          );
+    
+          toast.success("Welcome Back");
+    
+          setTimeout(() => {
+            navigate({ to: "/expert" });
+          }, 800);
+    
+        } else {
+    
+          toast.error("Expert not found");
+    
+        }
+      }
+    
+    } catch (error) {
+    
+      console.error(error);
+    
+      toast.error(
+        "Something went wrong"
+      );
+    
+    }
   };
 
   return (
