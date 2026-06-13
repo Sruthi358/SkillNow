@@ -15,6 +15,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import { registerUser } from "@/lib/firestore";
 
 export const Route = createFileRoute("/register-user")({
   head: () => ({
@@ -61,9 +62,22 @@ function UserRegistration() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+
+    // const payload = {
+    //   name: formData.name.trim(),
+    //   email: formData.email.trim(),
+    //   phone: formData.phone.trim(),
+    //   profession: formData.profession,
+    //   userType: formData.userType,
+    // };
+
+    // console.log("[Firebase-ready] User Registration:", payload);
+    // toast.success("User Registered Successfully");
+    // setTimeout(() => navigate({ to: "/user" }), 800);
 
     const payload = {
       name: formData.name.trim(),
@@ -72,10 +86,21 @@ function UserRegistration() {
       profession: formData.profession,
       userType: formData.userType,
     };
-
-    console.log("[Firebase-ready] User Registration:", payload);
-    toast.success("User Registered Successfully");
-    setTimeout(() => navigate({ to: "/user" }), 800);
+    
+    try {
+      await registerUser(payload);
+    
+      toast.success("User Registered Successfully");
+    
+      setTimeout(() => {
+        navigate({ to: "/login" });
+      }, 1000);
+    
+    } catch (error) {
+      console.error(error);
+    
+      toast.error("Failed to Register User");
+    }
   };
 
   return (
