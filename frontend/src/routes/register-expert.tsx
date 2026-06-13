@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useMemo, useState } from "react";
 import { ArrowLeft, Plus, X, Pencil, Check } from "lucide-react";
 import { toast } from "sonner";
+import { registerExpert } from "@/lib/firestore";
 
 export const Route = createFileRoute("/register-expert")({
   head: () => ({
@@ -211,25 +212,66 @@ function ExpertRegistration() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  // const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!validate()) return;
+
+    // const payload = {
+    //   name: formData.name.trim(),
+    //   email: formData.email.trim(),
+    //   phone: formData.phone.trim(),
+    //   city: formData.city.trim(),
+    //   expertType: formData.expertType,
+    //   skills: isTech ? formData.skills : [],
+    //   customSkills: isTech ? formData.customSkills : [],
+    //   expertise: isTech ? [] : formData.expertise,
+    //   availability: formData.availability,
+    // };
+
+    // console.log("[Firebase-ready] Expert Registration:", payload);
+    // toast.success("Expert Registered Successfully");
+    // setTimeout(() => navigate({ to: "/expert" }), 800);
 
     const payload = {
       name: formData.name.trim(),
       email: formData.email.trim(),
       phone: formData.phone.trim(),
       city: formData.city.trim(),
+    
       expertType: formData.expertType,
+    
       skills: isTech ? formData.skills : [],
-      customSkills: isTech ? formData.customSkills : [],
-      expertise: isTech ? [] : formData.expertise,
+    
+      customSkills: isTech
+        ? formData.customSkills
+        : [],
+    
+      expertise: isTech
+        ? []
+        : formData.expertise,
+    
       availability: formData.availability,
     };
-
-    console.log("[Firebase-ready] Expert Registration:", payload);
-    toast.success("Expert Registered Successfully");
-    setTimeout(() => navigate({ to: "/expert" }), 800);
+    
+    try {
+      await registerExpert(payload);
+    
+      toast.success(
+        "Expert Registered Successfully"
+      );
+    
+      setTimeout(() => {
+        navigate({ to: "/login" });
+      }, 1000);
+    
+    } catch (error) {
+      console.error(error);
+    
+      toast.error(
+        "Failed to Register Expert"
+      );
+    }
   };
 
   return (
