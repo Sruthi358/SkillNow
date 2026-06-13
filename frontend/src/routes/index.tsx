@@ -27,7 +27,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "SkillNow — From stuck to solved" },
       {
         property: "og:description",
-        content: "AI-powered context transfer that connects you with the right human expert — instantly.",
+        content:
+          "AI-powered context transfer that connects you with the right human expert — instantly.",
       },
     ],
   }),
@@ -36,18 +37,54 @@ export const Route = createFileRoute("/")({
 
 const steps = [
   { icon: Zap, title: "Get Stuck", desc: "Your AI assistant keeps going in circles." },
-  { icon: MousePointerClick, title: "Click SkillNow", desc: "One click in your browser extension." },
-  { icon: Brain, title: "AI Understands Context", desc: "We extract your full troubleshooting history." },
-  { icon: UserCheck, title: "Connect With Expert", desc: "Matched to a human expert who already knows the problem." },
+  {
+    icon: MousePointerClick,
+    title: "Click SkillNow",
+    desc: "One click in your browser extension.",
+  },
+  {
+    icon: Brain,
+    title: "AI Understands Context",
+    desc: "We extract your full troubleshooting history.",
+  },
+  {
+    icon: UserCheck,
+    title: "Connect With Expert",
+    desc: "Matched to a human expert who already knows the problem.",
+  },
 ];
 
 const features = [
-  { icon: Zap, title: "Zero Re-Explanation", desc: "Stop retyping your problem. We package the whole story for the expert." },
-  { icon: Brain, title: "AI-Powered Context Extraction", desc: "Pulls signal from chats, logs, and attempts into a clean ticket." },
-  { icon: Users, title: "Smart Expert Matching", desc: "Routed to the human who's solved this exact stack before." },
-  { icon: Rocket, title: "Faster Resolution", desc: "Average time-to-fix drops by 4× when context is preserved." },
-  { icon: MousePointerClick, title: "One-Click Transfer", desc: "From browser to expert with a single click — no copy-paste." },
-  { icon: Workflow, title: "Human + AI Collaboration", desc: "AI does triage. Humans do the hard parts. Together, faster." },
+  {
+    icon: Zap,
+    title: "Zero Re-Explanation",
+    desc: "Stop retyping your problem. We package the whole story for the expert.",
+  },
+  {
+    icon: Brain,
+    title: "AI-Powered Context Extraction",
+    desc: "Pulls signal from chats, logs, and attempts into a clean ticket.",
+  },
+  {
+    icon: Users,
+    title: "Smart Expert Matching",
+    desc: "Routed to the human who's solved this exact stack before.",
+  },
+  {
+    icon: Rocket,
+    title: "Faster Resolution",
+    desc: "Average time-to-fix drops by 4× when context is preserved.",
+  },
+  {
+    icon: MousePointerClick,
+    title: "One-Click Transfer",
+    desc: "From browser to expert with a single click — no copy-paste.",
+  },
+  {
+    icon: Workflow,
+    title: "Human + AI Collaboration",
+    desc: "AI does triage. Humans do the hard parts. Together, faster.",
+  },
 ];
 
 const flow = [
@@ -71,11 +108,6 @@ function Landing() {
         </div>
 
         <div className="mx-auto max-w-4xl text-center">
-          <div className="glass mx-auto inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-muted-foreground animate-fade-up">
-            <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-            AI-powered context transfer · Hackathon 2026
-          </div>
-
           <h1 className="font-display mt-6 text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl animate-fade-up [animation-delay:80ms]">
             Turn Failed AI Conversations
             <br />
@@ -112,13 +144,19 @@ function Landing() {
                   <span className="h-1.5 w-1.5 rounded-full bg-success" /> Expert Matched
                 </span>
               </div>
-              <h3 className="mt-3 text-lg font-semibold">Spring Boot container crashes on AWS ECS after deploy</h3>
+              <h3 className="mt-3 text-lg font-semibold">
+                Spring Boot container crashes on AWS ECS after deploy
+              </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                AI summary extracted from 47 messages, 12 attempts, and CloudWatch logs. Routed to Aarav M., 8y AWS.
+                AI summary extracted from 47 messages, 12 attempts, and CloudWatch logs. Routed to
+                Aarav M., 8y AWS.
               </p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {["Docker", "Spring Boot", "AWS ECS", "JVM"].map((t) => (
-                  <span key={t} className="rounded-md bg-primary/15 px-2 py-0.5 text-xs text-primary">
+                  <span
+                    key={t}
+                    className="rounded-md bg-primary/15 px-2 py-0.5 text-xs text-primary"
+                  >
                     {t}
                   </span>
                 ))}
@@ -132,8 +170,12 @@ function Landing() {
       <section id="how" className="px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary">How it works</p>
-            <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">From stuck to solved in 4 steps</h2>
+            <p className="text-sm font-medium uppercase tracking-wider text-primary">
+              How it works
+            </p>
+            <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">
+              From stuck to solved in 4 steps
+            </h2>
           </div>
 
           <div className="relative mt-16 grid gap-6 md:grid-cols-4">
@@ -189,7 +231,9 @@ function Landing() {
       <section id="architecture" className="px-6 py-24">
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary">Architecture</p>
+            <p className="text-sm font-medium uppercase tracking-wider text-primary">
+              Architecture
+            </p>
             <h2 className="font-display mt-3 text-3xl font-bold md:text-4xl">How context flows</h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               Every step preserves the full picture, so the human expert sees what the AI saw.
@@ -201,7 +245,10 @@ function Landing() {
               {flow.map((node, i) => {
                 const Icon = node.icon;
                 return (
-                  <div key={node.label} className="flex flex-col items-center gap-4 md:flex-row md:gap-2">
+                  <div
+                    key={node.label}
+                    className="flex flex-col items-center gap-4 md:flex-row md:gap-2"
+                  >
                     <div className="flex flex-col items-center">
                       <div className="bg-gradient-brand flex h-16 w-16 items-center justify-center rounded-2xl shadow-glow">
                         <Icon className="h-6 w-6 text-primary-foreground" />
@@ -231,7 +278,8 @@ function Landing() {
               Stop explaining. Start solving.
             </h2>
             <p className="relative mx-auto mt-3 max-w-lg text-muted-foreground">
-              Try the demo and see how SkillNow turns a tangled AI thread into a clean expert-ready ticket.
+              Try the demo and see how SkillNow turns a tangled AI thread into a clean expert-ready
+              ticket.
             </p>
             <div className="relative mt-8 flex justify-center gap-3">
               <Link

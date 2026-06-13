@@ -21,34 +21,54 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold">Product</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><a href="#features" className="hover:text-foreground">Features</a></li>
-              <li><a href="#how" className="hover:text-foreground">How it works</a></li>
-              <li><a href="#architecture" className="hover:text-foreground">Architecture</a></li>
+              <li>
+                <a href="#features" className="hover:text-foreground">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#how" className="hover:text-foreground">
+                  How it works
+                </a>
+              </li>
+              <li>
+                <a href="#architecture" className="hover:text-foreground">
+                  Architecture
+                </a>
+              </li>
             </ul>
           </div>
           <div>
             <h4 className="text-sm font-semibold">Company</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground">About</a></li>
-              <li><a href="#" className="hover:text-foreground">Contact</a></li>
-              <li><a href="#" className="hover:text-foreground">Hackathon Project</a></li>
+              <li>
+                <a href="#" className="hover:text-foreground">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground">
+                  Contact
+                </a>
+              </li>
+              <li></li>
             </ul>
           </div>
           <div>
             <h4 className="text-sm font-semibold">Connect</h4>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="inline-flex items-center gap-2 hover:text-foreground">
+                <a
+                  href="https://github.com/Sruthi358/SkillNow.git"
+                  className="inline-flex items-center gap-2 hover:text-foreground"
+                >
                   <Github className="h-4 w-4" /> GitHub
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} SkillNow. Built for the hackathon.</p>
-          <p>Crafted with care · v1.0</p>
-        </div>
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row"></div>
       </div>
     </footer>
   );
